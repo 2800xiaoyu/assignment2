@@ -47,6 +47,21 @@ def read_data(path):
 
 # Define a function to write out result raster to a file
 def write_data(filename, environment):
+    """
+    Write data
+
+    Parameters
+    ----------
+    filename : String
+        The filename of output.
+    environment : TList
+        A reference to a shared environment.
+
+    Returns
+    -------
+    None.
+
+    """
     f = open(filename, 'w', newline='')
     writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
     for row in environment:

@@ -32,8 +32,15 @@ def exiting():
     except Exception:
         pass
 
-# Define a function to output the final result and save them into a file
 def output():
+    """
+    Output rescaled data, plot and print to check availability
+
+    Returns
+    -------
+    None.
+
+    """
     io.write_data('../data/output/rescaled.txt', rescaled)
     gw = scale1.get()
     tw = scale2.get()
@@ -41,13 +48,37 @@ def output():
     plot(True, gw, tw, pw)
     print('output success')
 
-# Define a function for testing
 def weight_and_add(geology, transport, population, gw, tw, pw):
+    """
+    Calculate the weighted raster and add them together
+    Mainly used for testing
+
+    Parameters
+    ----------
+    geology : List
+        List representing geology raster.
+    transport : List
+        List representing transport raster.
+    population : List
+        List representing population raster.
+    gw : Float
+        Geology weight.
+    tw : Float
+        Transport weight.
+    pw : Float
+        Population weight.
+
+    Returns
+    -------
+    output : List
+        Two-dimensional list for storing weighted raster.
+
+    """
     output = []
-    min_value = math.inf
-    max_value = 0
-    n_rows = len(geology)
-    n_cols = len(geology[0])
+    min_value = math.inf # Initialise minimum value of weighted raster
+    max_value = 0 # Initialise maximum value of weighted raster
+    n_rows = len(geology) # Define n_rows variable for testing
+    n_cols = len(geology[0]) # Define n_cols variable for testing
     for i in range(n_rows):
         output_row = [] # Create a one-dimensional list in loop
         for j in range(n_cols):
@@ -64,20 +95,34 @@ p0 = None
 # Define a function to plot weighted raster 
 def plot(do_output, gw, tw, pw):
     """
-    Redraws the canvas
+    Redraw the canvas
+
+    Parameters
+    ----------
+    do_output : Bool
+        Indicates whether to save the plot as an output image file.
+    gw : Float
+        Geology weight.
+    tw : Float
+        Transport weight.
+    pw : Float
+        Population weight.
+
+    Returns
+    -------
+    None.
 
     """
-    figure = plt.figure(figsize=(6, 6))
+    figure = plt.figure(figsize=(6, 6)) # Define and initialise a figure for plotting
     figure.clear()
     
-    canvas.figure= figure
+    canvas.figure= figure # Define a canvas in figure
     canvas.draw()
     
     # Weight and addition
-    # Create a two-dimensional list to store weighted results
-    output = []
-    min_value = math.inf
-    max_value = 0
+    output = [] # Create a two-dimensional list to store weighted results
+    min_value = math.inf # Initialise minimum value of weighted raster
+    max_value = 0 # Initialise maximum value of weighted raster
     for i in range(n_rows):
         output_row = [] # Create a one-dimensional list in loop
         for j in range(n_cols):
@@ -89,9 +134,8 @@ def plot(do_output, gw, tw, pw):
         output.append(output_row)
 
     # Rescale resulting raster to have values in the range [0,255]
-    # Create a two-dimensional list to store final results
-    global rescaled
-    rescaled = []
+    global rescaled # Define the global variable call rescaled
+    rescaled = [] # Create a two-dimensional list to store final results
     for i in range(n_rows):
         rescaled_output = [] # Create a one-dimensional list in loop
         for j in range(n_cols):
@@ -102,8 +146,7 @@ def plot(do_output, gw, tw, pw):
     plt.imshow(rescaled)
 
     if do_output:
-        filename = '../data/output/image.png'
-        # filename = 'C:/Users/xiaoyu/programming/data/output/images/image' + str(ite) + '.gif    
+        filename = '../data/output/image.png'  
         plt.savefig(filename)
         
     canvas.figure = figure
@@ -123,14 +166,12 @@ def update(x):
     None.
 
     """
-    
-    
-    gw = float(scale1.get())
-    tw = float(scale2.get())
-    pw = float(scale3.get())
-    scale1_label.config(text="Geology: " + str(round(gw,2)))
-    scale2_label.config(text="Transport:" + str(round(tw,2)))
-    scale3_label.config(text="Population:" + str(round(pw,2)))
+    gw = float(scale1.get()) # Geology weight changes when scale is changed
+    tw = float(scale2.get()) # Transport weight changes when scale is changed
+    pw = float(scale3.get()) # Population weight changes when scale is changed
+    scale1_label.config(text="Geology: " + str(round(gw,2))) # Add a label: Geology: (value with two decimal places)
+    scale2_label.config(text="Transport:" + str(round(tw,2))) # Add a label: Transport: (value with two decimal places)
+    scale3_label.config(text="Population:" + str(round(pw,2))) # Add a label: Population: (value with two decimal places)
     plot(False, gw, tw, pw)
     
 if __name__ == '__main__':
@@ -162,24 +203,20 @@ if __name__ == '__main__':
     root.title("Site Suitability Weight")
     
     # Import three rasters into GUI
-    # Factors raster
-    figure1, axs= plt.subplots(1, 3, figsize = (9, 4))
+    figure1, axs= plt.subplots(1, 3, figsize = (9, 4)) # Create a figure with three subplots to store three rasters in the GUI
     # Create the first subplot in figure
-    #ax1 = figure1.add_subplot()
     axs[0].imshow(geology)
     axs[0].set_title('Geology')
     
     # Create the second subplot in figure
-    #ax2 = figure1.add_subplot()
     axs[1].imshow(transport)
     axs[1].set_title('Transport')
     
     # Create the third subplot in figure
-    #ax3 = figure1.add_subplot()
     axs[2].imshow(population)
     axs[2].set_title('Population')
     
-    # Create a new frame for displaying rasters
+    # Create frame_1 to store canvas1
     frame_1 = tk.Frame(master=root, padx=20, pady=20)
     frame_1.pack(side=tk.LEFT, fill=tk.BOTH, expand=1, anchor=tk.CENTER)
     
@@ -189,7 +226,7 @@ if __name__ == '__main__':
     plt.close(figure1)
     
     # Create a canvas to display the figure
-    # Result canvas
+    # Weighted result canvas
     canvas = TkAgg(figure, master=root)
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
     plt.close(figure)
@@ -199,7 +236,7 @@ if __name__ == '__main__':
     scale2_value = tk.StringVar()
     scale3_value = tk.StringVar()
     
-    # Create the scales
+    # Create the scales and link this with update function
     # Scale for geology
     scale1 = ttk.Scale(root, from_=0, to=1, command=update)
     scale1.pack()
