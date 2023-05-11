@@ -1,5 +1,5 @@
-# assignment2
-This distribution contains data (initial raster and output data), source code, a document with testing explanation and other issues, a LICENCE and a README.
+# Assignment2
+This distribution contains data (initial raster and output data), source code, a document with testing explanation and other issues, a LICENCE and a README with software introduction.
 
 # Introduction
 The software uses three raster data in UK as input to calculate and show a suitable location of a rock aggregate factory. The value in each raster is a two-dimensional array which has a range of [0, 255]. The raster data represents geology, transport and population respectively and the higher the value of a factor is, the more suitable the location is for the factory.
@@ -10,7 +10,7 @@ The software works based on two Python files: model.py and io.py. The main worki
 Once clicking ‘run’ button, a GUI window will appear, which contains three raster files displayed in a canvas and an empty area for final results combined with three factor scales and two operator buttons. In the left canvas, three factors for factory location selection, geology, transport and population are displayed. And in the right empty canvas, the final result will be displayed after weighting factors by using scales. Users can use three sliders to change the weights of each factor and each of factor’s value can be seen on the right of slider. Users can define each slider’s value by looking at the sign on the right. Once they have decided three weights, they can click ‘Output’ button at the bottom. The final result can be output into a file called ‘output’. The output function can be used repeatedly. Users can change sliders and every time if they prefer a result, they can click ‘Output’ button to save it into the file. Finally, the ‘Exit’ button can be used to close the software.
 
 # Software
-The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function. And model file is mainly used for software function achievement.
+The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function. And model file is mainly used for software function achievement. Test.py file is used for testing finally.
 # read_data in io.py
 
 def read_data(path):
@@ -65,20 +65,9 @@ Software requires that the final result should change when users slide the scale
 The update() function takes one positional arguements: 'x'. It is used to pass the function.
 
 # Output and exit function in model.py
-Other two functions are ‘output’ and ‘exit’, which are buttons in GUI. The ‘output’ function is created for outputting final images and save them into a file. It is realized by using write_data function from io.py and call it in model.py. 
+Other two functions are ‘output’ and ‘exit’, which are buttons in GUI. The ‘output’ function is created for outputting final images and save them into a file. It is realized by using write_data function from io.py and call it in model.py.
 
-Git:
-cd C:/Users/xiaoyu/assignment2
-cd assignment2
-
-git clone https://github.com/2800xiaoyu/assignment2.git
-
-git fetch
-git branch -v
-git merge origin/main
-
-git add .
-(copy data and src file into assignment2 file)
-git commit -m “first time”
-git push
-
+# A function for testing in model.py
+Because the four functions created for achievement are not very suitable for testing, another function called 'weight_and_add' which is only for calculating the weighted raster is created.
+The weight_and_add function takes six positional arguments: 'geology', 'transport', 'population', 'gw', 'tw' and 'pw'. Formal three are raster list, and latter three are float value for raster weights. The function is created based on loop in plot() and it is used in test.py.
+In the test.py, 'unittest' mudule is used to create a class with testing function and these six variables are called in it to calculate the weighted raster value is equal to the ideal value or not. The value of each argument is defined manually and randomly. According to the result shown in the console, the test is successful.
