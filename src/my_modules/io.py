@@ -54,7 +54,7 @@ def write_data(filename, environment):
     ----------
     filename : String
         The filename of output.
-    environment : TList
+    environment : List
         A reference to a shared environment.
 
     Returns
