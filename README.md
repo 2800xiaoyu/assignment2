@@ -1,5 +1,6 @@
 # assignment2
-This README contains 
+This distribution contains data (initial raster and output data), source code, a document with testing explanation and other issues, a LICENCE and a README.
+
 # Introduction
 The software uses three raster data in UK as input to calculate and show a suitable location of a rock aggregate factory. The value in each raster is a two-dimensional array which has a range of [0, 255]. The raster data represents geology, transport and population respectively and the higher the value of a factor is, the more suitable the location is for the factory.
 
@@ -9,7 +10,7 @@ The software works based on two Python files: model.py and io.py. The main worki
 Once clicking ‘run’ button, a GUI window will appear, which contains three raster files displayed in a canvas and an empty area for final results combined with three factor scales and two operator buttons. In the left canvas, three factors for factory location selection, geology, transport and population are displayed. And in the right empty canvas, the final result will be displayed after weighting factors by using scales. Users can use three sliders to change the weights of each factor and each of factor’s value can be seen on the right of slider. Users can define each slider’s value by looking at the sign on the right. Once they have decided three weights, they can click ‘Output’ button at the bottom. The final result can be output into a file called ‘output’. The output function can be used repeatedly. Users can change sliders and every time if they prefer a result, they can click ‘Output’ button to save it into the file. Finally, the ‘Exit’ button can be used to close the software.
 
 # Software
-The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function.
+The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function. And model file is mainly used for software function achievement.
 # read_data in io.py
 
 def read_data(path):
