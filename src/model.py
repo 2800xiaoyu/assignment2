@@ -46,7 +46,6 @@ def output():
     tw = scale2.get()
     pw = scale3.get()
     plot(True, gw, tw, pw)
-    print('output success')
 
 def weight_and_add(geology, transport, population, gw, tw, pw):
     """
