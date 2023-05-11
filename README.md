@@ -11,6 +11,7 @@ Once clicking ‘run’ button, a GUI window will appear, which contains three r
 # Software
 The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function.
 # read_data in io.py
+
 def read_data(path):
     f = open(path, newline='')
     data = []
@@ -34,6 +35,7 @@ def read_data(path):
 Positional argument: 'path'. It represents the path to a CSV file
 Return values: 'data', 'n_rows', 'n_cols'. ‘data’ is a list created to store input data. The list is the rows of data and it contains the values in the columns for each row. In addition, the read_data function would check that each raw of ‘data’ contains the same number of values, and it returns the number of lines (n_rows) and the number of values in each line (n_cols) as well as ‘data’. 'n_rows' and 'n_cols' are integers representing the number of rows and columns in the input raster data.
 # write_data in io.py
+
 def write_data(filename, environment):
     f = open(filename, 'w', newline='')
     writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
