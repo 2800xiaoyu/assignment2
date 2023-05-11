@@ -203,7 +203,7 @@ if __name__ == '__main__':
     root.title("Site Suitability Weight")
     
     # Import three rasters into GUI
-    figure1, axs= plt.subplots(1, 3, figsize = (9, 4)) # Create a figure with three subplots to store three rasters in the GUI
+    figure1, axs = plt.subplots(1, 3, figsize = (9, 4)) # Create a figure with three subplots to store three rasters in the GUI
     # Create the first subplot in figure
     axs[0].imshow(geology)
     axs[0].set_title('Geology')
