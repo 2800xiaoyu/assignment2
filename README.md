@@ -11,39 +11,12 @@ Once clicking ‘run’ button, a GUI window will appear, which contains three r
 
 # Software
 The software is achieved by two parts which are model.py and io.py. And io file is used to read and write data by defining read_data function and write_data function. And model file is mainly used for software function achievement. Test.py file is used for testing finally.
-# read_data in io.py
-
-def read_data(path):
-    f = open(path, newline='')
-    data = []
-    
-    n_rows = 0
-    n_cols = None
-    
-    for line in csv.reader(f, quoting=csv.QUOTE_NONNUMERIC):
-        row = []
-        for value in line:
-            row.append(value)
-        if n_cols is None:
-            n_cols = len(row)
-        assert(n_cols == len(row))
-        data.append(row)
-        n_rows += 1
-    f.close()
-    
-    return data, n_rows, n_cols
-
+# read_data function in io.py
 Positional argument: 'path'. It represents the path to a CSV file
 Return values: 'data', 'n_rows', 'n_cols'. ‘data’ is a list created to store input data. The list is the rows of data and it contains the values in the columns for each row. In addition, the read_data function would check that each raw of ‘data’ contains the same number of values, and it returns the number of lines (n_rows) and the number of values in each line (n_cols) as well as ‘data’. 'n_rows' and 'n_cols' are integers representing the number of rows and columns in the input raster data.
-# write_data in io.py
 
-def write_data(filename, environment):
-    f = open(filename, 'w', newline='')
-    writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
-    for row in environment:
-        writer.writerow(row)
-
-The write_data() function takes two positional arguments, 'filename' and 'environment' and 'filename' is a string.
+# write_data function in io.py
+The write_data() function takes two positional arguments, 'filename' and 'environment' and 'filename' is a string. The function realize that help users to output final images and a rescaled txt. file.
 
 # Weight and addition loop in model.py
 As for model, the first idea is creating lists to store weighted sum output and rescaled final result. Because both of these two results are two-dimensional arrays, defining a two-dimensional list and a one-dimensional list are necessary. As for weighting raster, a two-dimensional list is created to store the results.
@@ -67,7 +40,7 @@ The update() function takes one positional arguements: 'x'. It is used to pass t
 # Output and exit function in model.py
 Other two functions are ‘output’ and ‘exit’, which are buttons in GUI. The ‘output’ function is created for outputting final images and save them into a file. It is realized by using write_data function from io.py and call it in model.py.
 
-# A function for testing in model.py
+# Weight_and_add function for testing in model.py
 Because the four functions created for achievement are not very suitable for testing, another function called 'weight_and_add' which is only for calculating the weighted raster is created.
 The weight_and_add function takes six positional arguments: 'geology', 'transport', 'population', 'gw', 'tw' and 'pw'. Formal three are raster list, and latter three are float value for raster weights. The function is created based on loop in plot() and it is used in test.py.
-In the test.py, 'unittest' mudule is used to create a class with testing function and these six variables are called in it to calculate the weighted raster value is equal to the ideal value or not. The value of each argument is defined manually and randomly. According to the result shown in the console, the test is successful.
+In the test.py, 'unittest' mudule is used to create a class with testing function and these six variables are called in it to calculate the weighted raster value is equal to the ideal value or not. The value of each argument is defined manually and randomly. According to the result shown in the console, the test is successful. It is not related to main work with software, it is only created for testing.
