@@ -1,5 +1,10 @@
 # Assignment2
 This distribution contains data (initial raster and output data), source code, a document with testing explanation and other issues, a LICENCE and a README with software introduction.
+README file focuses on explaining how to run and what to expect when it runs.
+The document focuses on test explanation and major issues encountered during development and how these were overcome (or not).
+The src file contains source codes, and documentation/comments are added in it.
+The data file contains input data and output result.
+The words in the document and README are around 2100 in total.
 
 # Introduction
 The software uses three raster data in UK as input to calculate and show a suitable location of a rock aggregate factory. The value in each raster is a two-dimensional array which has a range of [0, 255]. The raster data represents geology, transport and population respectively and the higher the value of a factor is, the more suitable the location is for the factory.
